@@ -22,16 +22,14 @@ jobs:
       with:
         context: ./backend
         push: true
-        # Hardcoded username here to prevent "invalid reference format"
-        tags: reddychinnu456959/mean-backend:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/mean-backend:latest
 
     - name: Build and push Frontend
       uses: docker/build-push-action@v4
       with:
         context: ./frontend
         push: true
-        # Hardcoded username here to prevent "invalid reference format"
-        tags: reddychinnu456959/mean-frontend:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/mean-frontend:latest
 
   deploy:
     needs: build-and-push
@@ -44,12 +42,9 @@ jobs:
         username: ${{ secrets.VM_USERNAME }}
         key: ${{ secrets.VM_SSH_KEY }}
         script: |
-            mkdir -p ~/mean-app
-            cd ~/mean-app
-            curl -O https://raw.githubusercontent.com/kiran27-1/mean-intern-task/main/docker-compose.yml
-            
-            # This ensures the server has the right docker-compose tool installed
-            sudo apt-get update && sudo apt-get install docker-compose -y
-            
-            sudo docker-compose pull
-            sudo docker-compose up -d
+          mkdir -p ~/mean-app
+          cd ~/mean-app
+          curl -O https://raw.githubusercontent.com/kiran27-1/mean-intern-task/main/docker-compose.yml
+          export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+          sudo docker-compose pull
+          sudo docker-compose up -d
