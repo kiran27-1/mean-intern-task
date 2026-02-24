@@ -1,27 +1,27 @@
-In this DevOps task, you need to build and deploy a full-stack CRUD application using the MEAN stack (MongoDB, Express, Angular 15, and Node.js). The backend will be developed with Node.js and Express to provide REST APIs, connecting to a MongoDB database. The frontend will be an Angular application utilizing HTTPClient for communication.  
+# MEAN Stack CRUD Application Deployment Task
 
-The application will manage a collection of tutorials, where each tutorial includes an ID, title, description, and published status. Users will be able to create, retrieve, update, and delete tutorials. Additionally, a search box will allow users to find tutorials by title.
+## Candidate Information
+* **Name:** Jaya Kiran Reddy
+* **Role:** DevOps Internship Candidate
+* **Deployment Date:** Feb 24, 2026
 
-## Project setup
+## Task Summary
+Successfully containerized and deployed a full-stack MEAN application using a modern CI/CD pipeline.
 
-### Node.js Server
+### Tech Stack Used
+* **Frontend:** Angular 15 (Containerized with Nginx)
+* **Backend:** Node.js & Express
+* **Database:** MongoDB (Official Docker Image)
+* **Orchestration:** Docker Compose
+* **CI/CD:** GitHub Actions
+* **Cloud:** AWS EC2 (Ubuntu 22.04)
+* **Reverse Proxy:** Nginx (configured inside the frontend container to route `/api` traffic)
 
-cd backend
+### How to Access
+* **Live URL:** http://[YOUR_AWS_PUBLIC_IP_HERE]
+* **Docker Hub:** https://hub.docker.com/u/reddychinnu456959
 
-npm install
-
-You can update the MongoDB credentials by modifying the `db.config.js` file located in `app/config/`.
-
-Run `node server.js`
-
-### Angular Client
-
-cd frontend
-
-npm install
-
-Run `ng serve --port 8081`
-
-You can modify the `src/app/services/tutorial.service.ts` file to adjust how the frontend interacts with the backend.
-
-Navigate to `http://localhost:8081/`
+### Pipeline Details
+1.  **Build Stage:** GitHub Actions builds Docker images for both frontend and backend.
+2.  **Push Stage:** Images are pushed to Docker Hub (`reddychinnu456959/mean-*`).
+3.  **Deploy Stage:** The pipeline SSHes into the AWS EC2 instance, pulls the latest `docker-compose.yml`, and restarts the containers.
