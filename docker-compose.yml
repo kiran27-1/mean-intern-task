@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: ${DOCKER_USERNAME}/mean-backend:latest
+    image: reddychinnu456959/mean-backend:latest
     container_name: mean-backend
     environment:
       - MONGO_URI=mongodb://mongodb:27017/dd_db
@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: ${DOCKER_USERNAME}/mean-frontend:latest
+    image: reddychinnu456959/mean-frontend:latest
     container_name: mean-frontend
     ports:
       - "80:80"
