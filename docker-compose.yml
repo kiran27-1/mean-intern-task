@@ -10,7 +10,6 @@ services:
     restart: unless-stopped
 
   backend:
-    build: ./backend
     image: ${DOCKER_USERNAME}/mean-backend:latest
     container_name: mean-backend
     environment:
@@ -20,7 +19,6 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
     image: ${DOCKER_USERNAME}/mean-frontend:latest
     container_name: mean-frontend
     ports:
