@@ -45,5 +45,9 @@ jobs:
           mkdir -p ~/mean-app
           cd ~/mean-app
           curl -O https://raw.githubusercontent.com/kiran27-1/mean-intern-task/main/docker-compose.yml
-          sudo DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} docker-compose pull
-          sudo DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} docker-compose up -d
+          
+          # This physically writes your username into the file so sudo can't strip it
+          sed -i 's/${reddychinnu456959}/${{ secrets.DOCKER_USERNAME }}/g' docker-compose.yml
+          
+          sudo docker compose pull
+          sudo docker compose up -d
