@@ -18,7 +18,7 @@ Successfully containerized and deployed a full-stack MEAN application using a mo
 * **Reverse Proxy:** Nginx (configured inside the frontend container to route `/api` traffic)
 
 ### How to Access
-* **Live URL:** http://[YOUR_AWS_PUBLIC_IP_HERE]
+* **Live URL:** http://3.111.37.96
 * **Docker Hub:** https://hub.docker.com/u/reddychinnu456959
 
 ### Pipeline Details
