@@ -46,5 +46,5 @@ jobs:
           cd ~/mean-app
           curl -O https://raw.githubusercontent.com/kiran27-1/mean-intern-task/main/docker-compose.yml
           echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" > .env
-          sudo docker compose pull
-          sudo docker compose up -d
+          sudo docker-compose pull
+          sudo docker-compose up -d
