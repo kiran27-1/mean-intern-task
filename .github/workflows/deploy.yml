@@ -42,9 +42,15 @@ jobs:
         username: ${{ secrets.VM_USERNAME }}
         key: ${{ secrets.VM_SSH_KEY }}
         script: |
-          mkdir -p ~/mean-app
-          cd ~/mean-app
-          curl -O https://raw.githubusercontent.com/kiran27-1/mean-intern-task/main/docker-compose.yml
-          export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
-          sudo docker-compose pull
-          sudo docker-compose up -d
+            mkdir -p ~/mean-app
+            cd ~/mean-app
+            curl -O https://raw.githubusercontent.com/kiran27-1/mean-intern-task/main/docker-compose.yml
+            
+            # 1. Force stop and remove anything that is currently stuck/broken
+            sudo docker-compose down --remove-orphans || true
+            
+            # 2. Pull the fresh images we just built
+            sudo docker-compose pull
+            
+            # 3. Start everything fresh
+            sudo docker-compose up -d
